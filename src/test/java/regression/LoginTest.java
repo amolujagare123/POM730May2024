@@ -18,7 +18,7 @@ public class LoginTest {
     driver.get("http://localhost/ip");
 
     Login login = new Login(driver);
-        
+
     login.setTxtUsername("amolujagare@gmail.com");
     login.setTxtPassword("admin123");
     login.clickLogin();

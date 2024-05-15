@@ -17,6 +17,14 @@ public class Login {
     @FindBy (xpath = "//button[@type='submit']")
     WebElement btnLogin;
 
+    @FindBy(xpath = "//a[@class='btn btn-default']")
+    WebElement lnkForgotPassword;
+
+    public void clickForgotPassword()
+    {
+        lnkForgotPassword.click();
+    }
+
     public Login(WebDriver driver)
     {
         PageFactory.initElements(driver,this);
