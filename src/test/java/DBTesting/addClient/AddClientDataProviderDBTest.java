@@ -13,8 +13,10 @@ import pages.clients.AddClient;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 
+import static util.Conversion.*;
 import static util.ForDataProvider.getDataFromExcelSheet;
 
 public class AddClientDataProviderDBTest {
@@ -42,7 +44,7 @@ public class AddClientDataProviderDBTest {
                               String State, String ZipCode, String Country, String Gender,
                               String BirthDate, String PhoneNumber, String FaxNumber,
                               String MobileNumber, String EmailAddress, String WebAddress,
-                              String VATID, String TaxesCode) throws ClassNotFoundException, SQLException {
+                              String VATID, String TaxesCode) throws ClassNotFoundException, SQLException, ParseException {
         Menu menu = new Menu(driver);
         menu.clickAddClient();
 
@@ -73,7 +75,7 @@ public class AddClientDataProviderDBTest {
         ArrayList<String> expected = new ArrayList<>();
         expected.add(ClientName);
         expected.add(ClientSurname);
-        expected.add(Language);
+        expected.add(Language.toLowerCase());
         expected.add(StreetAddress1);
         expected.add(StreetAddress2);
         expected.add(City);
@@ -120,9 +122,16 @@ public class AddClientDataProviderDBTest {
             actual.add(rs.getString("client_city"));
             actual.add(rs.getString("client_state"));
             actual.add(rs.getString("client_zip"));
-            actual.add(rs.getString("client_country"));
-            actual.add(rs.getString("client_gender"));
-            actual.add(rs.getString("client_birthdate"));
+
+            String shortCountry = rs.getString("client_country");
+            String fullFormCountry = convertCountry(shortCountry);
+            actual.add(fullFormCountry);
+
+
+            actual.add(getGender(rs.getString("client_gender")));
+
+
+            actual.add(convertDate(rs.getString("client_birthdate")));
             actual.add(rs.getString("client_phone"));
             actual.add(rs.getString("client_fax"));
             actual.add(rs.getString("client_mobile"));
@@ -133,12 +142,10 @@ public class AddClientDataProviderDBTest {
         }
 
 
-
-
         System.out.println("expected="+expected);
         System.out.println("actual="+actual);
 
-      //  Assert.assertEquals(actual,expected,"Incorrect message or user not added");
+        Assert.assertEquals(actual,expected,"Data Miss match");
 
     }
 

@@ -11,14 +11,14 @@ public class Login {
     WebElement element  = driver.findElement(By.id("email"));*/
 
     @FindBy(id="email")
-    WebElement txtUsername;
+    public WebElement txtUsername;
     @FindBy (id="password")
-    WebElement txtPassword;
+    public WebElement txtPassword;
     @FindBy (xpath = "//button[@type='submit']")
-    WebElement btnLogin;
+    public WebElement btnLogin;
 
     @FindBy(xpath = "//a[@class='btn btn-default']")
-    WebElement lnkForgotPassword;
+    public  WebElement lnkForgotPassword;
 
     public void clickForgotPassword()
     {
