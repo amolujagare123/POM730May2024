@@ -145,4 +145,12 @@ public class AddClient {
         taxesCode.sendKeys(code);
     }
 
+    @FindBy(name="btn_submit")
+    WebElement btnSave;
+
+     public void clickBtnSave()
+    {
+        btnSave.click();
+    }
+
 }
