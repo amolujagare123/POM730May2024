@@ -20,6 +20,11 @@ public class Login {
     @FindBy(xpath = "//a[@class='btn btn-default']")
     public  WebElement lnkForgotPassword;
 
+    @FindBy(xpath = "//label[@for='email']")
+    public WebElement lblEmail;
+    @FindBy(xpath = "//label[@for='password']")
+    public WebElement lblPassword;
+
     public void clickForgotPassword()
     {
         lnkForgotPassword.click();

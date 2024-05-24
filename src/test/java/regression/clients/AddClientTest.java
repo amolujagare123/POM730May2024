@@ -7,25 +7,10 @@ import org.testng.annotations.Test;
 import pages.Login;
 import pages.Menu;
 import pages.clients.AddClient;
+import util.DoLogin;
 
-public class AddClientTest {
+public class AddClientTest extends DoLogin {
 
-    WebDriver driver;
-    @BeforeClass
-    public void doLogin()
-    {
-
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.get("http://localhost/ip");
-
-            Login login = new Login(driver);
-
-            login.setTxtUsername("amolujagare@gmail.com");
-            login.setTxtPassword("admin123");
-            login.clickLogin();
-
-    }
 
     @Test
     public void addClientTest()

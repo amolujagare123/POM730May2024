@@ -7,20 +7,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Test;
 import pages.Login;
+import util.OpenURL;
 
-public class LoginTest {
+import java.io.IOException;
 
+import static util.ConfigReader.getPassword;
+import static util.ConfigReader.getUsername;
+
+public class LoginTest extends OpenURL {
   @Test
-  public void loginTest()
-  {
-    WebDriver driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.get("http://localhost/ip");
-
+  public void loginTest() throws IOException {
     Login login = new Login(driver);
-
-    login.setTxtUsername("amolujagare@gmail.com");
-    login.setTxtPassword("admin123");
+    login.setTxtUsername(getUsername());
+    login.setTxtPassword(getPassword());
     login.clickLogin();
 
   }
